@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const router = express.Router();
+const auth = require('../middleware/auth');
 
 // bring in User database model
 const User = require('../models/User')
@@ -11,8 +12,15 @@ const User = require('../models/User')
 // @route     GET 'api/auth'
 // @desc      Get authenticated logged in user
 // @access    Private
-router.get('/', (req, res)=>{
-  res.send('get logged in user')
+router.get('/', auth, async (req, res)=>{
+  // use user id from jwt token to find user and return from database
+  try {
+    // note using mongoose 2nd parameter option so the password is not returned by findById
+    const user = await User.findById(req.user.id , '-password');
+    res.json(user)
+  } catch (err) {
+    res.status(400).json({msg: 'user not found'})
+  }
 })
 
 // @route     POST 'api/auth'
