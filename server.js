@@ -6,8 +6,7 @@ const app = express() ;
 // connect to database
 connectDB();
 
-// init middlewaare for json body resposne
-
+// IMPORTANT : init middleware for json body resposne
 app.use(express.json({ extended : false }));
 
 const PORT = process.env.PORT || 5000 ;
