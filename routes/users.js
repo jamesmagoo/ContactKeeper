@@ -19,8 +19,8 @@ router.post('/', [
   check('name', 'Please enter your name').not().isEmpty(),
   // email validation
   check('email','Please inlcude a valid email').isEmail(),
-  // password validation
-  check('password','Password must be greater than 6 characters').isLength({min : 6}),
+  // phone validation
+  check('phone','Password must be greater than 6 characters').isLength({min : 6}),
 ],
 async (req, res)=>{
   // send any validation results errors
