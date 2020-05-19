@@ -11,3 +11,8 @@
   * Validation using express-validator 
   * Encryption using bcryptjs
   * Authentication using json web tokens
+
+### Process/Learning Notes : FRONTEND
+
+  * Frontend/Backend folder structure 
+  * Setting up & developing using concurrently
