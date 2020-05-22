@@ -46,7 +46,8 @@ const ContactState = props => {
         phone : '111-111-6666',
         type : 'professional'
       }
-    ]
+    ],
+    loading : false
   }
 
   /* INITIALISE REDUCER */
@@ -66,6 +67,7 @@ const ContactState = props => {
   return(<ContactContext.Provider 
     value ={{
     contacts : state.contacts,
+    loading : state.loading
   }}
   >
     {props.children}

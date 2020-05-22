@@ -16,3 +16,5 @@
 
   * Frontend/Backend folder structure 
   * Setting up & developing using concurrently
+  * Contact resource context, reducers, actions, etc.
+  * Contacts List UI
