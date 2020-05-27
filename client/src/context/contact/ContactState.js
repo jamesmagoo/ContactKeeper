@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react';
-import uuid from 'uuid';
+import {v4 as uuidv4}from 'uuid';
 import ContactContext from './contactContext' ;
 import contactReducer from './contactReducer';
 import {
@@ -56,6 +56,12 @@ const ContactState = props => {
   /* ACTIONS */
 
   // ADD CONTACT
+  const addContact = (contact) => {
+
+    // use uuid to generate id until mongodb is set up
+    contact.id = uuidv4();
+    dispatch({type: ADD_CONTACT, payload: contact})
+  }
   // DELETE CONTACT
   // SET CURRENT CONTACT
   // CLEAR CURRENT CONTACT
@@ -67,7 +73,8 @@ const ContactState = props => {
   return(<ContactContext.Provider 
     value ={{
     contacts : state.contacts,
-    loading : state.loading
+    loading : state.loading,
+    addContact
   }}
   >
     {props.children}
