@@ -47,7 +47,8 @@ const ContactState = props => {
         type : 'professional'
       }
     ],
-    loading : false
+    loading : false,
+    current : null 
   }
 
   /* INITIALISE REDUCER */
@@ -57,14 +58,25 @@ const ContactState = props => {
 
   // ADD CONTACT
   const addContact = (contact) => {
-
     // use uuid to generate id until mongodb is set up
     contact.id = uuidv4();
     dispatch({type: ADD_CONTACT, payload: contact})
   }
+
   // DELETE CONTACT
+  const deleteContact = (id) => {
+    dispatch({type: DELETE_CONTACT, payload: id})
+  }
+
   // SET CURRENT CONTACT
+  const setCurrent = (id) => {
+    dispatch({type: SET_CURRENT, payload: id})
+  }
+
   // CLEAR CURRENT CONTACT
+  const clearCurrent = () => {
+    dispatch({type:CLEAR_CURRENT})
+  }
   // UPDATE CONTACT
   // FILTER CONTACTS
   // CLEAR FILTER
@@ -72,9 +84,13 @@ const ContactState = props => {
   /* RETURN PROVIDER FOR ACCESS TO STATE & ACTIONS */
   return(<ContactContext.Provider 
     value ={{
-    contacts : state.contacts,
-    loading : state.loading,
-    addContact
+      contacts : state.contacts,
+      loading : state.loading,
+      current : state.current,
+      addContact,
+      deleteContact,
+      setCurrent,
+      clearCurrent
   }}
   >
     {props.children}
