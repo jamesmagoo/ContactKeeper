@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 // bring in config
 const config = require('config');
-// init database
+// init database 
 const db = config.get('mongoURI');
 
 // connect to database function
